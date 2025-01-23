@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: Zlib */
+
 #include "plugin.h"
 
 zathura_error_t png_page_init(zathura_page_t* page) {

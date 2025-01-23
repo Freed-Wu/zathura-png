@@ -17,6 +17,8 @@ Installation
 
 To build and install the plugin using meson:
 
-    meson setup build
-    meson compile -Cbuild
-    meson install -Cbuild
+```sh
+meson setup build
+meson compile -Cbuild
+meson install -Cbuild
+```
