@@ -1,0 +1,41 @@
+---
+"on":
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
+
+# https://github.com/softprops/action-gh-release/issues/236
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install meson zathura-dev libgirara-dev libarchive-dev
+      - name: Build
+        run: |
+          meson setup build -Db_coverage=true
+          meson compile -Cbuild
+          meson test -Cbuild
+          meson dist -Cbuild
+      - uses: codecov/codecov-action@v4
+      - uses: actions/upload-artifact@v4
+        if: "! startsWith(github.ref, 'refs/tags/')"
+        with:
+          path: |
+            build/meson-dist/*.tar.xz
+      - uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          # body_path: build/CHANGELOG.md
+          files: |
+            build/meson-dist/*.tar.xz
