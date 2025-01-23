@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get -y update
-          sudo apt-get -y install meson zathura-dev libgirara-dev libarchive-dev
+          sudo apt-get -y install meson zathura-dev libgirara-dev
       - name: Build
         run: |
           meson setup build -Db_coverage=true

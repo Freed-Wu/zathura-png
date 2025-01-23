@@ -11,6 +11,5 @@ mkShell {
     pkg-config
     zathura
     girara
-    libarchive
   ];
 }
