@@ -9,7 +9,6 @@ version_array = version.split('.')
 
 cc = meson.get_compiler('c')
 
-prefix = get_option('prefix')
 datadir = get_option('datadir')
 metainfodir = join_paths(datadir, 'metainfo')
 desktopdir = join_paths(datadir, 'applications')
@@ -17,9 +16,8 @@ desktopdir = join_paths(datadir, 'applications')
 # required dependencies
 zathura = dependency('zathura', version: '>=0.5.3', fallback: ['zathura', 'zathura_dependency'])
 girara = dependency('girara-gtk3', fallback: ['girara', 'girara_dependency'])
-glib = dependency('glib-2.0')
 
-build_dependencies = [zathura, girara, glib]
+build_dependencies = [zathura, girara]
 
 if get_option('plugindir') == ''
   if zathura.type_name() == 'pkgconfig'
