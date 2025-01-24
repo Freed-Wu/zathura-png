@@ -1,10 +1,7 @@
-option('plugindir',
+option(
+  'plugindir',
   type: 'string',
   value: '',
-  description: 'Install to a different location than Zathura\'s plugin directory'
+  description: 'Install to a different location than Zathura\'s plugin directory',
 )
-option('tests',
-  type: 'feature',
-  value: 'auto',
-  description: 'run tests'
-)
+option('tests', type: 'feature', value: 'auto', description: 'run tests')

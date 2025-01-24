@@ -3,16 +3,21 @@ install_data('org.pwmt.zathura-png.desktop', install_dir: desktopdir)
 
 desktop_file_validate = find_program('desktop-file-validate', required: get_option('tests'), native: true)
 if desktop_file_validate.found()
-  test('validate-desktop',
+  test(
+    'validate-desktop',
     desktop_file_validate,
-    args: [join_paths(meson.current_source_dir(), 'org.pwmt.zathura-png.desktop')]
+    args: [join_paths(meson.current_source_dir(), 'org.pwmt.zathura-png.desktop')],
   )
 endif
 
 appstream_util = find_program('appstream-util', required: get_option('tests'), native: true)
 if appstream_util.found()
-  test('validate-appdata',
+  test(
+    'validate-appdata',
     appstream_util,
-    args: ['validate-relax', '--nonet', join_paths(meson.current_source_dir(), 'org.pwmt.zathura-png.metainfo.xml')]
+    args: [
+      'validate-relax',
+      '--nonet', join_paths(meson.current_source_dir(), 'org.pwmt.zathura-png.metainfo.xml'),
+    ],
   )
 endif

@@ -1,7 +1,9 @@
-project('zathura-png', 'c',
+project(
+  'zathura-png',
+  'c',
   version: '0.3.3',
   meson_version: '>=0.61',
-  default_options: ['c_std=c17', 'warning_level=3']
+  default_options: ['c_std=c17', 'warning_level=3'],
 )
 
 version = meson.project_version()
@@ -51,13 +53,14 @@ sources = files(
   'zathura-png/plugin.c',
 )
 
-shared_module('png',
+shared_module(
+  'png',
   sources,
   dependencies: build_dependencies,
   c_args: defines + flags,
   install: true,
   install_dir: plugindir,
-  gnu_symbol_visibility: 'hidden'
+  gnu_symbol_visibility: 'hidden',
 )
 
 subdir('data')
